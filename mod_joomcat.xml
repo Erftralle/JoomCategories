@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" client="site" method="upgrade">
+  <name>mod_joomcat</name>
+  <author>JoomGallery::Project Team</author>
+  <creationDate>20.07.2013</creationDate>
+  <authorEmail>team@joomgallery.net</authorEmail>
+  <authorUrl>www.joomgallery.net</authorUrl>
+  <copyright>(C) 2009 - 2013 JoomGallery::Project Team</copyright>
+  <license>This module is released under the GNU/GPL License</license>
+  <version>3.0 BETA2</version>
+  <description>MOD_JOOMCAT_DESC</description>
+  <files>
+    <filename module="mod_joomcat">mod_joomcat.php</filename>
+    <filename>index.html</filename>
+    <filename>helper.php</filename>
+    <filename>LICENSE.TXT</filename>
+    <filename>changelog.php</filename>
+    <filename>tmpl/default.php</filename>
+    <filename>tmpl/index.html</filename>
+  </files>
+  <media destination="mod_joomcat" folder="media">
+    <filename>index.html</filename>
+    <filename>mod_joomcat.js</filename>
+    <filename>close.png</filename>
+  </media>
+  <languages>
+   <language tag="en-GB">language/en-GB/en-GB.mod_joomcat.ini</language>
+   <language tag="en-GB">language/en-GB/en-GB.mod_joomcat.sys.ini</language>
+   <language tag="de-DE">language/de-DE/de-DE.mod_joomcat.ini</language>
+   <language tag="de-DE">language/de-DE/de-DE.mod_joomcat.sys.ini</language>
+   <language tag="nl-NL">language/nl-NL/nl-NL.mod_joomcat.ini</language>
+   <language tag="nl-NL">language/nl-NL/nl-NL.mod_joomcat.sys.ini</language>
+  </languages>
+  <config>
+    <fields name="params" addfieldpath="administrator/components/com_joomgallery/models/fields" addrulepath="administrator/components/com_joomgallery/models/rules">
+      <fieldset name="MOD_JOOMCAT_COMMON_PARAMETER_LBL" label="MOD_JOOMCAT_COMMON_PARAMETER_LBL">
+          <field name="moduleclass_sfx" type="text" default="" label="MOD_JOOMCAT_MODULE_CLASS_SUFFIX_LBL" description="MOD_JOOMCAT_MODULE_CLASS_SUFFIX_DESC" />
+          <field name="layout" type="modulelayout" default="default" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+          <field name="cfg_itemid" type="text" default="" label="MOD_JOOMCAT_ITEMID_LBL" description="MOD_JOOMCAT_ITEMID_DESC"/>  
+          <field name="cfg_catmode" type="list" default="0" label="MOD_JOOMCAT_CATMODE_LBL" description="MOD_JOOMCAT_CATMODE_DESC">
+            <option value="0">MOD_JOOMCAT_CATMODE_LAST_ADDED_LBL</option>
+            <option value="1">MOD_JOOMCAT_CATMODE_TOP_RATED_LBL</option>
+            <option value="2">MOD_JOOMCAT_CATMODE_MOST_VIEWED_LBL</option>
+            <option value="3">MOD_JOOMCAT_CATMODE_RANDOM_LBL</option>
+            <option value="4">MOD_JOOMCAT_CATMODE_NAME_ASC_LBL</option>
+            <option value="5">MOD_JOOMCAT_CATMODE_NAME_DESC_LBL</option>
+            <option value="6">MOD_JOOMCAT_CATMODE_ORDERING_ASC_LBL</option>
+            <option value="7">MOD_JOOMCAT_CATMODE_ORDERING_DESC_LBL</option>
+          </field>
+          <field name="cfg_count" type="text" class="validate-numeric" default="4" label="MOD_JOOMCAT_COUNT_LBL" description="MOD_JOOMCAT_COUNT_DESC" required="true"/>
+          <field name="cfg_rootcat" type="text" class="validate-numeric" default="1" label="MOD_JOOMCAT_ROOTCAT_LBL" description="MOD_JOOMCAT_ROOTCAT_DESC" required="true"/>    
+          <field name="cfg_blacklist_cats" type="text" default="" label="MOD_JOOMCAT_BLACKLIST_CATS_LBL" description="MOD_JOOMCAT_BLACKLIST_CATS_DESC" />
+          <field class ="btn-group" name="cfg_showhidden" type="radio" default="0" label="MOD_JOOMCAT_SHOWHIDDEN_LBL" description="MOD_JOOMCAT_SHOWHIDDEN_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>    
+          <field name="cfg_showthumb" type="list" default="0" label="MOD_JOOMCAT_SHOWTHUMB_LBL" description="MOD_JOOMCAT_SHOWTHUMB_DESC">
+            <option value="0">MOD_JOOMCAT_SHOWTHUMB_RANDOM_LBL</option>
+            <option value="1">MOD_JOOMCAT_SHOWTHUMB_CATEGORY_LBL</option>
+            <option value="2">MOD_JOOMCAT_SHOWTHUMB_NONE_LBL</option>
+          </field>
+          <field name="cfg_showimglink" type="openimage" default="default" label="MOD_JOOMCAT_SHOWIMGLINK_LBL" description="MOD_JOOMCAT_SHOWIMGLINK_DESC" detail="true" defaultMethod="true" prefix="MOD_JOOMCAT_SHOWIMGLINK_">
+            <option value="joomcat-none">MOD_JOOMCAT_SHOWIMGLINK_NONE</option>
+            <option value="joomcat-category">MOD_JOOMCAT_SHOWIMGLINK_CATEGORY</option>
+            <option value="joomcat-slideshow">MOD_JOOMCAT_SHOWIMGLINK_SLIDESHOW</option>
+          </field>                          
+          <field class="btn-group" name="cfg_showimgcat" type="radio" default="1" label="MOD_JOOMCAT_SHOWIMGCAT_LBL" description="MOD_JOOMCAT_SHOWIMGCAT_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field class="btn-group" name="cfg_showimgcatlink" type="radio" default="1" label="MOD_JOOMCAT_SHOWIMGCATLINK_LBL" description="MOD_JOOMCAT_SHOWIMGCATLINK_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field class="btn-group" name="cfg_showcatrate" type="radio" default="0" label="MOD_JOOMCAT_SHOWCATRATE_LBL" description="MOD_JOOMCAT_SHOWCATRATE_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field class="btn-group" name="cfg_showcathits" type="radio" default="0" label="MOD_JOOMCAT_SHOWCATHITS_LBL" description="MOD_JOOMCAT_SHOWCATHITS_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>    
+          <field class="btn-group" name="cfg_showcatdescr" type="radio" default="0" label="MOD_JOOMCAT_SHOWCATDESCR_LBL" description="MOD_JOOMCAT_SHOWCATDESCR_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field class="btn-group" name="cfg_showcatadditionalfields" type="radio" default="0" label="MOD_JOOMCAT_SHOWCATADDITIONALFIELDS_LBL" description="MOD_JOOMCAT_SHOWCATADDITIONALFIELDS_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>          
+          <field class="btn-group" name="cfg_showimgdescr" type="radio" default="0" label="MOD_JOOMCAT_SHOWIMGDESCR_LBL" description="MOD_JOOMCAT_SHOWIMGDESCR_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+        </fieldset>
+        <fieldset name="MOD_JOOMCAT_VIEW_PARAMETER_LBL" label="MOD_JOOMCAT_VIEW_PARAMETER_LBL">
+          <field name="cfg_columns" type="text" class="validate-numeric" default="1" label="MOD_JOOMCAT_COLUMNS_LBL" description="MOD_JOOMCAT_COLUMNS_DESC" required="true"/>
+          <field name="cfg_thumbnailimgtype" type="list" default="thumb" label="MOD_JOOMCAT_THUMBNAILIMGTYPE_LBL" description="MOD_JOOMCAT_THUMBNAILIMGTYPE_DESC">
+            <option value="thumb">MOD_JOOMCAT_THUMBNAILIMGTYPE_THUMB_LBL</option>
+            <option value="img">MOD_JOOMCAT_THUMBNAILIMGTYPE_IMG_LBL</option>
+            <option value="orig">MOD_JOOMCAT_THUMBNAILIMGTYPE_ORIG_LBL</option>
+          </field>
+          <field class="btn-group" name="cfg_cropimg" type="radio" default="0" label="MOD_JOOMCAT_CROPIMG_LBL" description="MOD_JOOMCAT_CROPIMG_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field name="cfg_cropimgwidth" type="text" class="validate-numeric" default="50" label="MOD_JOOMCAT_CROPIMGWIDTH_LBL" description="MOD_JOOMCAT_CROPIMGWIDTH_DESC"/>
+          <field name="cfg_cropimgheight" type="text" class="validate-numeric" default="50" label="MOD_JOOMCAT_CROPIMGHEIGHT_LBL" description="MOD_JOOMCAT_CROPIMGHEIGHT_DESC"/>
+          <field name="cfg_thumbnaildim" type="list" default="0" label="MOD_JOOMCAT_THUMBNAILDIM_LBL" description="MOD_JOOMCAT_THUMBNAILDIM_DESC">
+            <option value="0">MOD_JOOMCAT_THUMBNAILDIM_ORG_LBL</option>
+            <option value="1">MOD_JOOMCAT_THUMBNAILDIM_HEIGHT_LBL</option>
+            <option value="2">MOD_JOOMCAT_THUMBNAILDIM_WIDTH_LBL</option>
+          </field>
+          <field name="cfg_thumbnaildimvalue" type="text" class="validate-numeric" default="150" label="MOD_JOOMCAT_THUMBNAILDIMVALUE_LBL" description="MOD_JOOMCAT_THUMBNAILDIMVALUE_DESC"/>
+          <field name="cfg_imgposition" type="list" default="1" label="MOD_JOOMCAT_IMGPOSITION_LBL" description="MOD_JOOMCAT_IMGPOSITION_DESC">
+            <option value="1">MOD_JOOMCAT_IMGPOSITION_ABOVE_LBL</option>
+            <option value="2">MOD_JOOMCAT_LEFT_LBL</option>
+            <option value="3">MOD_JOOMCAT_RIGHT_LBL</option>
+            <option value="4">MOD_JOOMCAT_BELOW_LBL</option>
+          </field>
+          <field name="cfg_horalign" type="list" default="center" label="MOD_JOOMCAT_HORALIGN_LBL" description="MOD_JOOMCAT_HORALIGN_DESC">
+            <option value="left">MOD_JOOMCAT_HORALIGN_LEFT_LBL</option>
+            <option value="center">MOD_JOOMCAT_HORALIGN_CENTER_LBL</option>
+            <option value="right">MOD_JOOMCAT_HORALIGN_RIGHT_LBL</option>
+          </field>
+          <field class="btn-group" name="cfg_imgshowborder" type="radio" default="1" label="MOD_JOOMCAT_IMGSHOWBORDER_LBL" description="MOD_JOOMCAT_IMGSHOWBORDER_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field name="cfg_imgborderwidth" type="text" default="1px" label="MOD_JOOMCAT_IMGBORDERWIDTH_LBL" description="MOD_JOOMCAT_IMGBORDERWIDTH_DESC"/>
+          <field name="cfg_imgborderstyle" type="list" default="solid" label="MOD_JOOMCAT_IMGBORDERSTYLE_LBL" description="MOD_JOOMCAT_IMGBORDERSTYLE_DESC">
+              <option value="solid">solid</option>
+              <option value="dotted">dotted</option>
+              <option value="dashed">dashed</option>
+              <option value="double">double</option>
+              <option value="groove">groove</option>
+              <option value="ridge">ridge</option>
+              <option value="inset">inset</option>
+              <option value="outset">outset</option>
+          </field>
+          <field name="cfg_imgbordercolor" type="color" float="none" default="#C3C3C3" label="MOD_JOOMCAT_IMGBORDERCOLOR_LBL" description="MOD_JOOMCAT_IMGBORDERCOLOR_DESC"/>
+          <field name="cfg_imgpadding" type="text" default="3px" label="MOD_JOOMCAT_IMGPADDING_LBL" description="MOD_JOOMCAT_IMGPADDING_DESC"/>
+          <field name="cfg_imgbgcolor" type="color" float="none" default="#FFFFFF" label="MOD_JOOMCAT_IMGBGCOLOR_LBL" description="MOD_JOOMCAT_IMGBGCOLOR_DESC"/>
+          <field class="btn-group" name="cfg_showshorttext" type="radio" default="0" label="MOD_JOOMCAT_SHOWSHORTTEXT_LBL" description="MOD_JOOMCAT_SHOWSHORTTEXT_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field class="btn-group" name="cfg_showhorruler" type="radio" default="1" label="MOD_JOOMCAT_SHOWHORRULER_LBL" description="MOD_JOOMCAT_SHOWHORRULER_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field class="btn-group" name="cfg_txtresetliststyle" type="radio" default="0" label="MOD_JOOMCAT_TXTRESETLISTSTYLE_LBL" description="MOD_JOOMCAT_TXTRESETLISTSTYLE_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field name="cfg_showvml" type="list" default="0" label="MOD_JOOMCAT_SHOWVML_LBL" description="MOD_JOOMCAT_SHOWVML_DESC">
+            <option value="0">MOD_JOOMCAT_VMLLINKNONE_LBL</option>
+            <option value="1">MOD_JOOMCAT_VMLLINKGALLERY_LBL</option>
+            <option value="2">MOD_JOOMCAT_VMLLINKROOTCAT_LBL</option>
+          </field>
+          <field name="cfg_vmlalign" type="list" default="right" label="MOD_JOOMCAT_VMLALIGN_LBL" description="MOD_JOOMCAT_VMLALIGN_DESC">
+            <option value="left">MOD_JOOMCAT_HORALIGN_LEFT_LBL</option>
+            <option value="center">MOD_JOOMCAT_HORALIGN_CENTER_LBL</option>
+            <option value="right">MOD_JOOMCAT_HORALIGN_RIGHT_LBL</option>
+          </field>
+          <field name="cfg_vmltext" type="text" default="View more ..." label="MOD_JOOMCAT_VMLTEXT_LBL" description="MOD_JOOMCAT_VMLTEXT_DESC"/>
+        </fieldset>
+        <fieldset name="MOD_JOOMCAT_SLD_VIEW_PARAMETER_LBL" label="MOD_JOOMCAT_SLD_VIEW_PARAMETER_LBL">
+          <field name="cfg_sldimgsort" type="list" default="0" label="MOD_JOOMCAT_SLDIMGSORT_LBL" description="MOD_JOOMCAT_SLDIMGSORT_DESC">
+            <option value="rand()">MOD_JOOMCAT_SLDIMGSORT_RAND_LBL</option>
+            <option value="jg.id DESC">MOD_JOOMCAT_SLDIMGSORT_IDDESC_LBL</option>
+            <option value="jg.id ASC">MOD_JOOMCAT_SLDIMGSORT_IDASC_LBL</option>
+            <option value="jg.imgtitle DESC">MOD_JOOMCAT_SLDIMGSORT_TITLEDESC_LBL</option>
+            <option value="jg.imgtitle ASC">MOD_JOOMCAT_SLDIMGSORT_TITELASC_LBL</option>
+            <option value="jg.imgdate DESC">MOD_JOOMCAT_SLDIMGSORT_DATEDESC_LBL</option>
+            <option value="jg.imgdate ASC">MOD_JOOMCAT_SLDIMGSORT_DATEASC_LBL</option>
+            <option value="jg.hits DESC">MOD_JOOMCAT_SLDIMGSORT_HITSDESC_LBL</option>
+            <option value="jg.hits ASC">MOD_JOOMCAT_SLDIMGSORT_HITSASC_LBL</option>
+            <option value="rating DESC, jg.imgvotesum DESC">MOD_JOOMCAT_SLDIMGSORT_VOTEDESC_LBL</option>
+            <option value="rating ASC, jg.imgvotesum ASC">MOD_JOOMCAT_SLDIMGSORT_VOTEASC_LBL</option>
+            <option value="jg.imgvotes DESC">MOD_JOOMCAT_SLDIMGSORT_VOTECOUNTDESC_LBL</option>
+            <option value="jg.imgvotes ASC">MOD_JOOMCAT_SLDIMGSORT_VOTECOUNTASC_LBL</option>
+          </field>
+          <field name="cfg_sldmaximg" type="text" class="validate-numeric" default="0" label="MOD_JOOMCAT_SLDMAXIMG_LBL" description="MOD_JOOMCAT_SLDMAXIMG_DESC"/>
+          <field class="btn-group" name="cfg_sldjgsettings" type="radio" default="1" label="MOD_JOOMCAT_SLDJGSETTINGS_LBL" description="MOD_JOOMCAT_SLDJGSETTINGS_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field name="cfg_sldtimer" type="text" class="validate-numeric" default="6000" label="MOD_JOOMCAT_SLDTIMER_LBL" description="MOD_JOOMCAT_SLDTIMER_DESC"/>
+          <field name="cfg_sldtransition" type="list" default="0" label="MOD_JOOMCAT_SLDTRANSITION_LBL" description="MOD_JOOMCAT_SLDTRANSITION_DESC">
+            <option value="0">fade</option>
+            <option value="1">fadeslideleft</option>
+            <option value="2">crossfade</option>
+            <option value="3">continuoushorizontal</option>
+            <option value="4">continuousvertical</option>
+            <option value="5">fadebg</option>
+          </field>
+          <field name="cfg_sldtranstime" type="text" class="validate-numeric" default="2000" label="MOD_JOOMCAT_SLDTRANSTIME_LBL" description="MOD_JOOMCAT_SLDTRANSTIME_DESC"/>
+          <field class="btn-group" name="cfg_sldmaxdimauto" type="radio" default="0" label="MOD_JOOMCAT_SLDMAXDIMAUTO_LBL" description="MOD_JOOMCAT_SLDMAXDIMAUTO_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field name="cfg_sldwidth" type="text" class="validate-numeric" default="640" label="MOD_JOOMCAT_SLDWIDTH_LBL" description="MOD_JOOMCAT_SLDWIDTH_DESC"/>
+          <field name="cfg_sldheight" type="text" class="validate-numeric" default="480" label="MOD_JOOMCAT_SLDHEIGHT_LBL" description="MOD_JOOMCAT_SLDHEIGHT_DESC"/>
+          <field class="btn-group" name="cfg_sldinfopane" type="radio" default="0" label="MOD_JOOMCAT_SLDINFOPANE_LBL" description="MOD_JOOMCAT_SLDINFOPANE_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field class="btn-group" name="cfg_sldcarousel" type="radio" default="0" label="MOD_JOOMCAT_SLDCAROUSEL_LBL" description="MOD_JOOMCAT_SLDCAROUSEL_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+          <field class="btn-group" name="cfg_sldarrows" type="radio" default="0" label="MOD_JOOMCAT_SLDARROWS_LBL" description="MOD_JOOMCAT_SLDARROWS_DESC">
+            <option value="0">MOD_JOOMCAT_NO_LBL</option>
+            <option value="1">MOD_JOOMCAT_YES_LBL</option>
+          </field>
+        </fieldset>
+    </fields>
+  </config>
+  <updateservers>
+    <server type="collection" priority="1" name="JoomGallery Update Service">http://www.joomgallery.net/components/com_newversion/xml/extensions3.xml</server>
+  </updateservers>
+</extension>
