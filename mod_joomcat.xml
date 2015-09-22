@@ -2,12 +2,12 @@
 <extension type="module" version="3.0" client="site" method="upgrade">
   <name>mod_joomcat</name>
   <author>JoomGallery::Project Team</author>
-  <creationDate>20.07.2013</creationDate>
+  <creationDate>21.09.2015</creationDate>
   <authorEmail>team@joomgallery.net</authorEmail>
   <authorUrl>www.joomgallery.net</authorUrl>
-  <copyright>(C) 2009 - 2013 JoomGallery::Project Team</copyright>
+  <copyright>(C) 2009 - 2015 JoomGallery::Project Team</copyright>
   <license>This module is released under the GNU/GPL License</license>
-  <version>3.0 BETA2</version>
+  <version>3.0</version>
   <description>MOD_JOOMCAT_DESC</description>
   <files>
     <filename module="mod_joomcat">mod_joomcat.php</filename>
