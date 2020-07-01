@@ -188,7 +188,8 @@ class modJoomCatHelper extends JoomInterface
       // Default, last added
       default:
         $query
-          ->group('ca.cid DESC');
+          ->group('ca.cid')
+          ->order('ca.cid DESC');
         break;
     }
 
