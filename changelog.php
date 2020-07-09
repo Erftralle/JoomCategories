@@ -36,6 +36,13 @@ Legende / Legend:
 - -> Removed
 ! -> Note
 
+-------------------------------------------------------------------------------
+MOD_JOOMCAT version: 3.0.2
+-------------------------------------------------------------------------------
+20200709
+# Fix database error occurring with MySQL 8
+^ Remove obsolete repository SVN tags
+- Remove duplicate LISCENSE file
 
 -------------------------------------------------------------------------------
 MOD_JOOMCAT version: 3.0.1
