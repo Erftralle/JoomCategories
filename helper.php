@@ -1,6 +1,4 @@
 <?php
-// $HeadURL: https://joomgallery.org/svn/joomgallery/JG-3/Modules/JoomCategories/trunk/helper.php $
-// $Id: helper.php 4314 2013-07-20 09:53:08Z erftralle $
 /**
 * Module JoomCategories for JoomGallery
 * by JoomGallery::Project Team
@@ -190,7 +188,8 @@ class modJoomCatHelper extends JoomInterface
       // Default, last added
       default:
         $query
-          ->group('ca.cid DESC');
+          ->group('ca.cid')
+          ->order('ca.cid DESC');
         break;
     }
 
