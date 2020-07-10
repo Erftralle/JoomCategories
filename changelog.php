@@ -1,6 +1,4 @@
 <?php
-// $HeadURL: https://joomgallery.org/svn/joomgallery/JG-3/Modules/JoomCategories/trunk/changelog.php $
-// $Id: changelog.php 4314 2013-07-20 09:53:08Z erftralle $
 /**
 * Module JoomCategories for JoomGallery
 * by JoomGallery::Project Team
@@ -38,6 +36,13 @@ Legende / Legend:
 - -> Removed
 ! -> Note
 
+-------------------------------------------------------------------------------
+MOD_JOOMCAT version: 3.0.2
+-------------------------------------------------------------------------------
+20200709
+# Fix database error occurring with MySQL 8
+^ Remove obsolete repository SVN tags
+- Remove duplicate LISCENSE file
 
 -------------------------------------------------------------------------------
 MOD_JOOMCAT version: 3.0.1

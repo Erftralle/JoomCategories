@@ -1,5 +1,3 @@
-// $HeadURL: https://joomgallery.org/svn/joomgallery/JG-3/Modules/JoomCategories/trunk/media/mod_joomcat.js $
-// $Id: mod_joomcat.js 4101 2013-02-18 16:32:27Z erftralle $
 /**
 * Module JoomCategories for JoomGallery
 * by JoomGallery::Project Team
