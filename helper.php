@@ -24,6 +24,12 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
+// Load class to avoid error when using the joomla updater
+if(!class_exists('JoomInterface'))
+{
+  require_once JPATH_ROOT.'/components/com_joomgallery/interface.php';
+}
+
 /**
  * Helper class for module JoomCategories
  *
