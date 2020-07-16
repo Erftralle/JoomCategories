@@ -48,12 +48,17 @@
             <option value="7">MOD_JOOMCAT_CATMODE_ORDERING_DESC_LBL</option>
           </field>
           <field name="cfg_count" type="text" class="validate-numeric" default="4" label="MOD_JOOMCAT_COUNT_LBL" description="MOD_JOOMCAT_COUNT_DESC" required="true"/>
-          <field name="cfg_rootcat" type="text" class="validate-numeric" default="1" label="MOD_JOOMCAT_ROOTCAT_LBL" description="MOD_JOOMCAT_ROOTCAT_DESC" required="true"/>    
-          <field name="cfg_blacklist_cats" type="text" default="" label="MOD_JOOMCAT_BLACKLIST_CATS_LBL" description="MOD_JOOMCAT_BLACKLIST_CATS_DESC" />
+          <field name="cfg_rootcat" type="sql" default="1" query="SELECT cid, trim(concat(repeat('|—', level), ' ', name, ' (ID: ', cid, ')')) as showtitle FROM #__joomgallery_catg WHERE cid > 0 order by lft" key_field="cid" value_field="showtitle" label="MOD_JOOMCAT_ROOTCAT_LBL" description="MOD_JOOMCAT_ROOTCAT_DESC" required="true" class="input-xlarge" />
+          <field name="cfg_catsselectmode" type="radio" default="0" label="MOD_JOOMCAT_CATSSELECTMODE" description="MOD_JOOMCAT_CATSSELECTMODEDESC">
+            <option value="0">MOD_JOOMCAT_CATSSELECTMODEOLD</option>
+            <option value="1">MOD_JOOMCAT_CATSSELECTMODEMODERN</option>
+          </field>
+          <field name="cfg_blacklist_cats" type="text" default="" label="MOD_JOOMCAT_BLACKLIST_CATS_LBL" description="MOD_JOOMCAT_BLACKLIST_CATS_DESC" showon="cfg_catsselectmode:0" />
+          <field name="cfg_blacklist_catslist" type="sql" multiple="true" default="" query="SELECT cid, trim(concat(repeat('|—', level-1), ' ', name, ' (ID: ', cid, ')')) as showtitle FROM #__joomgallery_catg WHERE cid > 1 order by lft" key_field="cid" value_field="showtitle" label="MOD_JOOMCAT_BLACKLIST_CATS_LBL" description="MOD_JOOMCAT_BLACKLIST_CATSLIST_DESC" class="input-xlarge" showon="cfg_catsselectmode:1" />
           <field class ="btn-group" name="cfg_showhidden" type="radio" default="0" label="MOD_JOOMCAT_SHOWHIDDEN_LBL" description="MOD_JOOMCAT_SHOWHIDDEN_DESC">
             <option value="0">MOD_JOOMCAT_NO_LBL</option>
             <option value="1">MOD_JOOMCAT_YES_LBL</option>
-          </field>    
+          </field>
           <field name="cfg_showthumb" type="list" default="0" label="MOD_JOOMCAT_SHOWTHUMB_LBL" description="MOD_JOOMCAT_SHOWTHUMB_DESC">
             <option value="0">MOD_JOOMCAT_SHOWTHUMB_RANDOM_LBL</option>
             <option value="1">MOD_JOOMCAT_SHOWTHUMB_CATEGORY_LBL</option>

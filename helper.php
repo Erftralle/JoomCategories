@@ -269,8 +269,29 @@ class modJoomCatHelper extends JoomInterface
       $rootcat = 1;
     }
     $this->addConfig('rootcat', $rootcat);
-    $this->addConfig('blacklist_cats', $this->cleanCSV($params->get('cfg_blacklist_cats', '')));
-
+    $this->addConfig('cfg_catsselectmode', $params->get('cfg_catsselectmode', 0));
+    if($this->getConfig('cfg_catsselectmode') == 0)
+    {
+      if(is_array($params->get('cfg_blacklist_cats', '')))
+      {
+        $this->addConfig('blacklist_cats', implode(',', $this->cleanCSV($params->get('cfg_blacklist_cats', ''))));
+      }
+      else
+      {
+        $this->addConfig('blacklist_cats', $this->cleanCSV($params->get('cfg_blacklist_cats', '')));
+      }
+    }
+    else
+    {
+      if(is_array($params->get('cfg_blacklist_catslist', '')))
+      {
+        $this->addConfig('blacklist_cats', implode(',', $params->get('cfg_blacklist_catslist', '')));
+      }
+      else
+      {
+        $this->addConfig('blacklist_cats', $params->get('cfg_blacklist_catslist', ''));
+      }
+    }
     $itemid = intval($params->get('cfg_itemid', 0));
     if($itemid > 0)
     {
