@@ -269,28 +269,13 @@ class modJoomCatHelper extends JoomInterface
       $rootcat = 1;
     }
     $this->addConfig('rootcat', $rootcat);
-    $this->addConfig('cfg_catsselectmode', $params->get('cfg_catsselectmode', 0));
-    if($this->getConfig('cfg_catsselectmode') == 0)
+    if(is_array($params->get('cfg_blacklist_cats', '')))
     {
-      if(is_array($params->get('cfg_blacklist_cats', '')))
-      {
-        $this->addConfig('blacklist_cats', implode(',', $this->cleanCSV($params->get('cfg_blacklist_cats', ''))));
-      }
-      else
-      {
-        $this->addConfig('blacklist_cats', $this->cleanCSV($params->get('cfg_blacklist_cats', '')));
-      }
+      $this->addConfig('blacklist_cats', implode(',', $params->get('cfg_blacklist_cats', '')));
     }
     else
     {
-      if(is_array($params->get('cfg_blacklist_catslist', '')))
-      {
-        $this->addConfig('blacklist_cats', implode(',', $params->get('cfg_blacklist_catslist', '')));
-      }
-      else
-      {
-        $this->addConfig('blacklist_cats', $params->get('cfg_blacklist_catslist', ''));
-      }
+      $this->addConfig('blacklist_cats', $params->get('cfg_blacklist_cats', ''));
     }
     $itemid = intval($params->get('cfg_itemid', 0));
     if($itemid > 0)
@@ -831,26 +816,6 @@ class modJoomCatHelper extends JoomInterface
       $replace = '<a href="javascript:void(0);" title="'.$catname.'" onclick="jsJoomCatModule'.$this->getConfig('module_id').'_'.$catid.'.startSlideshow()">'.$matches[0].'</a>';
       $imgelement = preg_replace('/<img ([^>]*)>/', $replace, $imgelement);
     }
-  }
-
-  /**
-   * Function to clean a CSV lists.
-   * @param    string    $csv_list
-   * @return   string    $csv_list   cleaned CSV list
-   */
-  protected function cleanCSV($csv_list)
-  {
-    $search[0]     = '/[^0-9,]/m';
-    $search[1]     = '/,{2,}/m';
-    $search[2]     = '/,+$/m';
-    $search[3]     = '/^,+/m';
-    $replace[0]    = ',';
-    $replace[1]    = ',';
-    $replace[2]    = '';
-    $replace[3]    = '';
-    $csv_list = preg_replace($search, $replace, trim($csv_list));
-
-    return $csv_list;
   }
 
   /**
