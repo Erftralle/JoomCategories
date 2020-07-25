@@ -275,7 +275,7 @@ class modJoomCatHelper extends JoomInterface
     }
     else
     {
-      $this->addConfig('blacklist_cats', $params->get('cfg_blacklist_cats', ''));
+      $this->addConfig('blacklist_cats', '');
     }
     $itemid = intval($params->get('cfg_itemid', 0));
     if($itemid > 0)
