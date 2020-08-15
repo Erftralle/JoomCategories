@@ -31,6 +31,7 @@
    <language tag="nl-NL">language/nl-NL/nl-NL.mod_joomcat.ini</language>
    <language tag="nl-NL">language/nl-NL/nl-NL.mod_joomcat.sys.ini</language>
   </languages>
+  <scriptfile>script.php</scriptfile>
   <config>
     <fields name="params" addfieldpath="administrator/components/com_joomgallery/models/fields" addrulepath="administrator/components/com_joomgallery/models/rules">
       <fieldset name="MOD_JOOMCAT_COMMON_PARAMETER_LBL" label="MOD_JOOMCAT_COMMON_PARAMETER_LBL">
@@ -48,12 +49,12 @@
             <option value="7">MOD_JOOMCAT_CATMODE_ORDERING_DESC_LBL</option>
           </field>
           <field name="cfg_count" type="text" class="validate-numeric" default="4" label="MOD_JOOMCAT_COUNT_LBL" description="MOD_JOOMCAT_COUNT_DESC" required="true"/>
-          <field name="cfg_rootcat" type="text" class="validate-numeric" default="1" label="MOD_JOOMCAT_ROOTCAT_LBL" description="MOD_JOOMCAT_ROOTCAT_DESC" required="true"/>    
-          <field name="cfg_blacklist_cats" type="text" default="" label="MOD_JOOMCAT_BLACKLIST_CATS_LBL" description="MOD_JOOMCAT_BLACKLIST_CATS_DESC" />
+          <field name="cfg_rootcat" type="sql" default="1" query="SELECT cid, trim(concat(repeat('|—', level), ' ', name, ' (ID: ', cid, ')')) as showtitle FROM #__joomgallery_catg WHERE cid > 0 order by lft" key_field="cid" value_field="showtitle" label="MOD_JOOMCAT_ROOTCAT_LBL" description="MOD_JOOMCAT_ROOTCAT_DESC" required="true" class="input-xlarge" />
+          <field name="cfg_blacklist_cats" type="sql" multiple="true" default="" query="SELECT cid, trim(concat(repeat('|—', level-1), ' ', name, ' (ID: ', cid, ')')) as showtitle FROM #__joomgallery_catg WHERE cid > 1 order by lft" key_field="cid" value_field="showtitle" label="MOD_JOOMCAT_BLACKLIST_CATS_LBL" description="MOD_JOOMCAT_BLACKLIST_CATS_DESC" class="input-xlarge" />
           <field class ="btn-group" name="cfg_showhidden" type="radio" default="0" label="MOD_JOOMCAT_SHOWHIDDEN_LBL" description="MOD_JOOMCAT_SHOWHIDDEN_DESC">
             <option value="0">MOD_JOOMCAT_NO_LBL</option>
             <option value="1">MOD_JOOMCAT_YES_LBL</option>
-          </field>    
+          </field>
           <field name="cfg_showthumb" type="list" default="0" label="MOD_JOOMCAT_SHOWTHUMB_LBL" description="MOD_JOOMCAT_SHOWTHUMB_DESC">
             <option value="0">MOD_JOOMCAT_SHOWTHUMB_RANDOM_LBL</option>
             <option value="1">MOD_JOOMCAT_SHOWTHUMB_CATEGORY_LBL</option>
@@ -63,7 +64,7 @@
             <option value="joomcat-none">MOD_JOOMCAT_SHOWIMGLINK_NONE</option>
             <option value="joomcat-category">MOD_JOOMCAT_SHOWIMGLINK_CATEGORY</option>
             <option value="joomcat-slideshow">MOD_JOOMCAT_SHOWIMGLINK_SLIDESHOW</option>
-          </field>                          
+          </field>
           <field class="btn-group" name="cfg_showimgcat" type="radio" default="1" label="MOD_JOOMCAT_SHOWIMGCAT_LBL" description="MOD_JOOMCAT_SHOWIMGCAT_DESC">
             <option value="0">MOD_JOOMCAT_NO_LBL</option>
             <option value="1">MOD_JOOMCAT_YES_LBL</option>
