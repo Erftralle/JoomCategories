@@ -121,7 +121,7 @@ class mod_joomcatInstallerScript
   {
     if($action === 'update')
     {
-      if(!empty($this->fromVersion) && version_compare($this->fromVersion, '3.1.0', 'lt'))
+      if(!empty($this->fromVersion) && version_compare($this->fromVersion, '3.0.3', 'lt'))
       {
         // Get all JoomCategories modules
         $db    = JFactory::getDbo();
